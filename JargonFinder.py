@@ -1,7 +1,9 @@
 import os
 import re
 import datetime
-os.chdir("D:/spam") #change to your working directory 
+from os import listdir
+from os.path import isfile, join
+os.chdir("D:/spam")
 #open the jargon list in txt or csv format. provide full path if needed
 JL = open("JargonList.txt")
 
@@ -18,11 +20,15 @@ start = datetime.datetime.now()
 match_count = 0
 
 #initial for loop that reads the 60000 files named as file1.txt, file2.txt, file3.txt . . . file59999.txt
-#note: this loop can also be replaced in order to read all the files of the directory one by one using the OS module in python
+'''''''''
 for i in range(0,60000):
-    #create the file name
     fn = "file" + str(i) + ".txt"
-
+    spamreader = open(fn,'r')
+'''''''''
+#note: this loop can also be replaced in order to read all the files of the directory one by one using the OS module in python
+onlyfiles = [f for f in listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
+for fn in onlyfiles:
+    
     #open the file in read mode
     spamreader = open(fn,'r')
     
